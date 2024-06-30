@@ -1,12 +1,14 @@
 import socket
 import threading
+import serverGui
+from datetime import datetime
 
+maxClients = 5
 host = 'localhost'
-port = 8080
+port = 12347 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
-server.listen(5)
 
 clients = []
 usernames = []
@@ -32,19 +34,31 @@ def handle(client):
 def receive():
     while True:
         client, address = server.accept()
-        print(f'Connected with {str(address)}')
 
         client.send('GET_USERNAME'.encode('ascii'))
         username = client.recv(1024).decode('ascii')
         usernames.append(username)
         clients.append(client)
 
-        print(f'Nickname of client is: {username}')
+        consoleWrite(f'User {username} connected from {str(address)}')
         client.send("Connected to server".encode('ascii'))
         broadcast(f'{username} has joined chat'.encode('ascii'))
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
 
-print(f'Server listening on {host}:{port}')
-receive()
+def consoleWrite(text):
+    print(text)
+    newConsoleText =  str(serverGui.Console.label.text() + '\n' + str(datetime.now()) + " >> " + text)
+    serverGui.Console.label.setText(newConsoleText)
+
+def startServer():
+    server.listen(maxClients)
+    consoleWrite(f'Server listening on {host}:{port}')
+    thread = threading.Thread(target=receive)
+    thread.start()
+
+def stopServer():
+    server.close()
+    consoleWrite('Clients Disconnected')
+

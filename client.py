@@ -2,7 +2,7 @@ import socket
 import threading
 
 host = 'localhost'
-port = 8080
+port = 12347
 
 username = 'testClient' 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
