@@ -23,8 +23,9 @@ class ClientWindow(QtWidgets.QWidget):
         
         #Declaration of chatbox Label
         global ChatBox
-        ChatBox = QtWidgets.QLabel("ChatBox")
-        ChatBox.setStyleSheet("QLabel {color: black; background-color: silver; border: 1px solid gray; border-radius: 2px;}")
+        ChatBox = QtWidgets.QTextEdit("ChatBox")
+        ChatBox.setReadOnly(True)
+        #ChatBox.setStyleSheet("QLabel {color: black; background-color: silver; border: 1px solid gray; border-radius: 2px;}")
 
         #Declaration of application Layouts
         outerLayout = QtWidgets.QHBoxLayout(self)

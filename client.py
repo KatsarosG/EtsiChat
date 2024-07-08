@@ -1,8 +1,9 @@
 import socket
 import threading
+import clientGui
 
 host = 'localhost'
-port = 12347
+port = 50002 
 
 username = 'testClient' 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,6 +24,7 @@ def recieve():
                 client.send(username.encode('ascii'))
             else:
                 print(message)
+                clientGui.ChatBox.append(message)
         except:
             print("An error occured!")
             client.close()
@@ -30,7 +32,5 @@ def recieve():
 
 def write():
     while True:
-        message = f'{username}: {input("")}'
+        #message = f'{username}: {input("")}'
         client.send(message.encode('ascii'))
-
-
