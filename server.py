@@ -4,7 +4,7 @@ import serverGui
 
 maxClients = 5
 host = 'localhost'
-port = 50002 
+port = 50005 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))

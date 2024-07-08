@@ -3,7 +3,7 @@ import threading
 import clientGui
 
 host = 'localhost'
-port = 50002 
+port = 50005 
 
 username = 'testClient' 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -13,8 +13,8 @@ def connectToServer():
     receive_thread = threading.Thread(target=recieve)
     receive_thread.start()
 
-    write_thread = threading.Thread(target=write)
-    write_thread.start()
+    #write_thread = threading.Thread(target=write)
+    #write_thread.start()
 
 def recieve():
     while True:
@@ -30,7 +30,5 @@ def recieve():
             client.close()
             break
 
-def write():
-    while True:
-        #message = f'{username}: {input("")}'
-        client.send(message.encode('ascii'))
+def sendMessage():
+    client.send(clientGui.MessageBox.toPlainText().encode('ascii'))
