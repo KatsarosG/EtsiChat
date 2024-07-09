@@ -46,6 +46,9 @@ class ServerWidget(QtWidgets.QWidget):
         #Calling of above functions at the event of a clicked button
         StartServerButton.clicked.connect(server.startServer)
         StopServerButton.clicked.connect(server.stopServer)
+
+    def closeEvent(self, event):
+        server.stopServer()
 '''
     global consoleWrite
     def consoleWrite(text):

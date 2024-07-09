@@ -2,14 +2,11 @@ import socket
 import threading
 import clientGui
 
-host = 'localhost'
-port = 50005 
-
-username = 'testClient' 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+recieveFlag = True
 
-def connectToServer():
-    client.connect((host, port))
+def connectToServer(host, port):
+    client.connect((host, int(port)))
     receive_thread = threading.Thread(target=recieve)
     receive_thread.start()
 
@@ -17,11 +14,15 @@ def connectToServer():
     #write_thread.start()
 
 def recieve():
-    while True:
+    while recieveFlag:
         try:
             message = client.recv(1024).decode('ascii')
             if message == 'GET_USERNAME':
                 client.send(username.encode('ascii'))
+            elif message == 'SERVER_STOPPED':
+                print('Server Closed')
+                clientGui.ChatBox.append('Server Disconnected')
+                break
             else:
                 print(message)
                 clientGui.ChatBox.append(message)
