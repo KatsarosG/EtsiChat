@@ -4,7 +4,7 @@ import serverGui
 import sys
 
 maxClients = 5
-host = 'localhost'
+host = socket.gethostbyname(socket.gethostname()) 
 port = 13121 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
