@@ -4,7 +4,6 @@ import serverGui
 import sys
 
 maxClients = 5
-host = socket.gethostbyname(socket.gethostname()) 
 port = 13121 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -71,6 +70,7 @@ def receive():
         handle_thread.start()
 
 def startServer():
+    host = socket.gethostbyname(socket.gethostname()) 
     global receive_thread
     server.bind((host, port))
     server.listen(maxClients)
