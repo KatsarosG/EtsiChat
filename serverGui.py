@@ -16,8 +16,8 @@ class ServerWidget(QtWidgets.QWidget):
         StopServerButton = QtWidgets.QPushButton("Stop Server")
 
         #Cofigure Buttons
-        StartServerButton.setFixedSize(200,20)
-        StopServerButton.setFixedSize(200,20)
+        StartServerButton.setFixedSize(200,30)
+        StopServerButton.setFixedSize(200,30)
         
         #Declaration of chatbox Label
         global Console

@@ -19,9 +19,9 @@ class ClientWindow(QtWidgets.QWidget):
         SendMessageButton = QtWidgets.QPushButton("Send")
 
         #Cofigure Buttons
-        ConnectButton.setFixedSize(200,20)
-        StartServerButton.setFixedSize(200,20)
-        SendMessageButton.setFixedSize(40,30)
+        ConnectButton.setFixedSize(200,30)
+        StartServerButton.setFixedSize(200,30)
+        SendMessageButton.setFixedSize(50,30)
         
         #Declaration of chatbox Label
         global ChatBox
